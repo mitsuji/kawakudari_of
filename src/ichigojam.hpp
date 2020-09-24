@@ -2,6 +2,11 @@
 #include <cstdint>
 #include <string>
 
+#define DIR_UP    0
+#define DIR_RIGHT 1
+#define DIR_DOWN  2
+#define DIR_LEFT  3
+
 class std15 {
 
 public:
@@ -13,7 +18,7 @@ public:
   void putnum(int n);
   char scr(int x, int y);
   void cls ();
-  void scroll();
+  void scroll(int dir);
   void drawScreen();
   
 private:

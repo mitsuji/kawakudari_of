@@ -20,7 +20,7 @@ void ofApp::update(){
     std15_.putc('0');
     std15_.locate(floor(ofRandom(32)), 23);
     std15_.putc('*');
-    std15_.scroll();
+    std15_.scroll(DIR_UP);
 
     if (std15_.scr(x, 5) != '\0') {
       std15_.locate(0,23);

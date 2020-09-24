@@ -64,13 +64,42 @@ void std15::cls () {
   }
 }
 
-void std15::scroll() {
+void std15::scroll(int dir) {
     for (int y = 0; y < buffH; y++) {
       for (int x = 0; x < buffW; x++) {
-        if (y == buffH-1) {
-          setChar(x,y,'\0');
-        } else {
-          setChar(x,y,scr(x,y+1));
+        switch(dir) {
+          case DIR_UP: {
+          if (y == buffH-1) {
+            setChar(x,y,'\0');
+          } else {
+            setChar(x,y,scr(x,y+1));
+          }
+          }
+          break;
+          case DIR_RIGHT: {
+          if (x == buffW-1) {
+            setChar(buffW-x-1,y,'\0');
+          } else {
+            setChar(buffW-x-1,y,scr((buffW-x-1)-1,y));
+          }
+          }
+          break;
+          case DIR_DOWN: {
+          if (y == buffH-1) {
+            setChar(x,(buffH-y-1),'\0');
+          } else {
+            setChar(x,(buffH-y-1),scr(x,(buffH-y-1)-1));
+          }
+          }
+          break;
+          case DIR_LEFT: {
+          if (x == buffW-1) {
+            setChar(x,y,'\0');
+          } else {
+            setChar(x,y,scr(x+1,y));
+          }
+          }
+          break;
         }
       }
     }
