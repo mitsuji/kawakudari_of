@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <string>
 
 class std15 {
 
@@ -8,6 +9,8 @@ public:
   virtual ~std15();
   void locate (int x, int y);
   void putc(char c);
+  void putstr(std::string s);
+  void putnum(int n);
   char scr(int x, int y);
   void cls ();
   void scroll();

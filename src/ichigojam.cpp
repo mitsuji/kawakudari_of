@@ -1,5 +1,6 @@
 #include "ichigojam.hpp"
 #include "ofMain.h"
+#include <sstream>
 
 #define CHAR_W 8
 #define CHAR_H 8
@@ -29,6 +30,26 @@ void std15::locate (int x, int y) {
 
 void std15::putc(char c) {
   setChar(cursorX, cursorY, c);
+  if(cursorX < buffW-1) {
+    cursorX ++;
+  } else {
+    if(cursorY < buffH-1) {
+      cursorX = 0;
+      cursorY ++;
+    }
+  }
+}
+
+void std15::putstr(std::string s) {
+  for(size_t i = 0; i < s.length(); i++) {
+    putc(s[i]);
+  }
+}
+
+void std15::putnum(int n) {
+  std::ostringstream out;
+  out << n;
+  putstr(out.str());
 }
 
 char std15::scr(int x, int y) {

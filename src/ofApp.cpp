@@ -23,6 +23,9 @@ void ofApp::update(){
     std15_.scroll();
 
     if (std15_.scr(x, 5) != '\0') {
+      std15_.locate(0,23);
+      std15_.putstr("Game Over...");
+      std15_.putnum(ofGetFrameNum());
       running = false;
     }
   }
