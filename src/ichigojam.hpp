@@ -19,6 +19,7 @@ public:
   char scr(int x, int y);
   void cls ();
   void scroll(int dir);
+  void pset(int x, int y);
   void drawScreen();
   
 private:

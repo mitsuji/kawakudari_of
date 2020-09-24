@@ -110,7 +110,7 @@ void std15::setChar(int x, int y, char c) {
 }
 
 void std15::drawChar(int x, int y, char c) {
-  uint64_t glyph = ICHIGOJAM_FONT[(size_t)c];
+  uint64_t glyph = ICHIGOJAM_FONT[(unsigned char)c];
   for (int cy = 0; cy < CHAR_H; cy++) {
     uint64_t line = (glyph >> ((CHAR_H-cy-1)*CHAR_W)) & 0xff;
     for (int cx = 0; cx < CHAR_W; cx++) {
@@ -120,6 +120,33 @@ void std15::drawChar(int x, int y, char c) {
       }
     }
   }
+}
+
+void std15::pset(int x, int y) {
+  int cx = x / 2;
+  int cy = y / 2;
+  char c = scr(cx,cy);
+
+  int tx = x % 2;
+  int ty = y % 2;
+
+  char b;
+  if (ty == 0 && tx == 0) {
+    b = 1;
+  } else if (ty == 0 && tx != 0) {
+    b = 2;
+  } else if (ty != 0 && tx == 0) {
+    b = 4;
+  } else {
+    b = 8;
+  }
+
+  if((c & 0xf0) == 0x80){
+    setChar(cx, cy, (char)(c|b));
+  }else{
+    setChar(cx, cy, (char)(0x80|b));
+  }
+
 }
 
 void std15::drawScreen() {
